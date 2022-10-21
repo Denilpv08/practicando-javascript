@@ -13,7 +13,7 @@ function datos(){
 	let estadoCivil = "Soltero";
 //Uso de concatenaciones
 	document.write(`
-			Su nombre es: <b>${nombreUsuario}</b><br>
+						Su nombre es: <b>${nombreUsuario}</b><br>
 			Su edad es: <b>${edad}</b><br>
 			Su nacionalidad es: <b>${nacionalidad}</b><br>
 			Estado Civil: <b>${estadoCivil}</b><br>
@@ -108,6 +108,184 @@ Elija una opcion:
 			break;
 	}
 }
-
 // catalogo();
+
+//Usando el bucle while
+let n = 0;
+while(n <= 5){
+	// document.write(`Vueltas: ${n} <br>`);
+	n++;
+}
+
+//Usando Math.random y Math.floor
+function numRandom(min, max){
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+// console.log(numRandom(1, 50));
+
+function azar(){
+	let numeroMaquina = Math.floor(Math.random() * (10 - 1)) + 1;
+	// console.log(numeroMaquina);
+	let numeroUser = parseInt(prompt("Adivine el numero del 1 al 10"));
+
+	let vidas = 3;
+
+	while(numeroMaquina !== numeroUser && vidas > 1){
+		vidas--;
+		numeroUser = parseInt(prompt(`Vuelve a intentarlo, tus vidas: ${vidas}`));
+	}
+
+	if (numeroMaquina === numeroUser) {
+		alert(`GANASTE`);
+	} else {
+		alert(`PERDISTE, el numero era ${numeroMaquina}`);
+	}
+}
+// azar();
+
+//Usando funcion flecha
+const maquinaAzar = () =>{
+	let numeroMaquina = Math.floor(Math.random() * (10 - 1)) + 1;
+	// console.log(numeroMaquina);
+	let numeroUser = parseInt(prompt("Adivine el numero del 1 al 10"));
+
+	let vidas = 3;
+
+	while(numeroMaquina !== numeroUser && vidas > 1){
+		if (numeroMaquina < numeroUser) {
+			alert("Un numero más bajo");
+		} else {
+			alert("Un numero más alto");
+		}
+		vidas--;
+		numeroUser = parseInt(prompt(`Vuelve a intentarlo, tus vidas: ${vidas}`));
+	}
+
+	if (numeroMaquina === numeroUser) {
+		alert(`GANASTE`);
+	} else {
+		alert(`PERDISTE, el numero era ${numeroMaquina}`);
+	}
+}
+// maquinaAzar();
+
+//Uso de array
+
+const frutas = ["mango", "Manzana", "Pera", "Uva", "Fresa"];
+// console.log(frutas);
+
+//Usando bucle for
+for (let i = 0; i < frutas.length; i++) {
+	// console.log(frutas[i]);
+}
+
+//Usando bucle for of - Mostramos lo que hay dentro de un array
+for(let fru of frutas){
+	// console.log(fru);
+}
+
+//Usando bucle for in - Mostrar las posiciones del array
+for(let fruta in frutas){
+	// console.log(fruta);
+}
+
+const carritoCompra = () => {
+	const carrito = [];
+	const fruta = prompt(`🍒 Feria Market 🍉 ¿Qué fruta desea comprar?`);
+
+	carrito.push(fruta);
+
+	while(confirm('¿Desea agregar otro elemento al 🛒?')){
+		const fruta = prompt('¿Qué fruta desea comprar?');
+		carrito.push(fruta);
+	}
+	// Usando bucle forEach 
+	console.log('Usted compró: ');
+	carrito.forEach((fruta, index) =>{
+		console.log(`${index + 1}: ${fruta}`);
+	});
+}
+
+// carritoCompra();
+
+//Usando Object
+const perro = {
+	nombre: "Cocke",
+	raza: "Cocker",
+	edad: 4,
+	enemigos: ["gatos", "perros"]
+}
+
+//Usando hasOwnProperty() - Es para ver si una propiedad existe o no en un object
+// console.log(perro.hasOwnProperty("nombre"));
+// console.log(perro.hasOwnProperty("salud"));
+
+//Usando Object anidado
+const gato = {
+	nombre: 'Pelusa',
+	duerme: true,
+	edad: 7,
+	enemigos: ["perros", "agua"],
+	otros: {
+		amigos: ["cobarde", "tímido", "pegajoso"],
+		favoritos:{
+			comida:{
+				fria: 'salmon',
+				caliente: 'pollo'
+			},
+		},
+	},
+	comer: function(){
+		console.log("Ahora está comiendo");
+	}
+};
+
+const animal = () => {
+	const tigre = {
+		nombre: 'campana',
+		duerme: true,
+		edad: 10,
+		enemigos: ["Leones", "cocodrilos"],
+		comer(comida){
+			return `${this.nombre} está comiendo ${comida}`;
+		},
+		//Usando Getters
+		get nombreMayuscula(){
+			return this.nombre.toUpperCase();
+		},
+		//Usando Setters
+		set nuevoEnemigo(nuevo){
+			return this.enemigos.push(nuevo);
+		}
+	}
+
+	console.log(tigre.nombreMayuscula);
+	tigre.nuevoEnemigo = "Tiburones";
+	console.log(tigre.enemigos);
+}
+
+// animal();
+
+//getElementById()
+// let text = document.getElementById("tituloWeb");
+// let text2 = document.getElementById("tituloWeb").textContent;
+// let text3 = document.getElementById("tituloWeb").innerHTML;
+
+// console.log(text);
+
+const visualizar = () => {
+	const inputColor = document.getElementById("inputColor");
+	const boton = document.getElementById("boton");
+	const textoHexa = document.getElementById("textoHexa");
+	const cardColor = document.getElementById("cardColor");
+
+	boton.addEventListener("click", () => {
+		console.log(inputColor.value);
+		textoHexa.textContent = inputColor.value;
+		cardColor.style.backgroundColor = inputColor.value;
+		navigator.clipboard.writeText(inputColor.value).then(() => console.log("Texto copiado")).catch((e) => console.log(e));
+	});
+}
+visualizar();
+
 
