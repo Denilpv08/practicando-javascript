@@ -10,7 +10,51 @@
 </head>
 
 <body>
-	<div class="container mt-5 text-center">
+	<main class="container mt-5">
+		<div class="row text-center">
+			<article class="col-sm-4 mb-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Frutilla 🍓</h5>
+						<button class="btn btn-primary" data-fruta="frutilla">Agregar</button>
+					</div>
+				</div>
+			</article>
+			<article class="col-sm-4 mb-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Banana 🍌</h5>
+						<button class="btn btn-primary" data-fruta="banana">Agregar</button>
+					</div>
+				</div>
+			</article>	
+			<article class="col-sm-4 mb-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Manzana 🍏</h5>
+						<button class="btn btn-primary" data-fruta="manzana">Agregar</button>
+					</div>
+				</div>
+			</article>
+		</div>
+	</main>
+
+	<section class="container mt-3">
+		<ul class="list-group" id="carrito">
+			<!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="lead">A list item</span>
+                <span class="badge bg-primary rounded-pill">14</span>
+            </li> -->
+		</ul>
+	</section>
+
+	<template id="template">
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			<span class="lead">A list item</span>
+			<span class="badge bg-primary rounded-pill">14</span>
+		</li>
+	</template>
+	<!--<div class="container mt-5 text-center">
 		<label for="inputColor" class="form-label">Color Picker</label>
 		<input type="color" id="inputColor" class="from-control from-contro-color mb-3 w-100" tittle="Seleccione un color" value="#563d7c">
 		<button id="boton" class="btn btn-primary w-100">Visualizar</button>
@@ -18,7 +62,14 @@
 	<div class="container mt-5">
 		<p id="textoHexa" class="lead text-center">#563d7c</p>
 		<div class="card text-center p-5" id="cardColor" style="background-color: #563d7c"></div>
-	</div>
+	</div>-->
+
+	<!--<ul id="listaDinamica">
+		<li>Elemento estástico</li>
+		<li class="lista">
+			<b>País: </b> <span class="text-primary"> Aquí va el país</span>
+		</li>
+	</ul>-->
 
 	<!-- <button onclick="saludar()">Saludar</button> -->
     <!-- <script src="js/eloquent.js"></script> -->

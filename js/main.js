@@ -279,6 +279,7 @@ const visualizar = () => {
 	const textoHexa = document.getElementById("textoHexa");
 	const cardColor = document.getElementById("cardColor");
 
+	//Usando addEventListener()
 	boton.addEventListener("click", () => {
 		console.log(inputColor.value);
 		textoHexa.textContent = inputColor.value;
@@ -286,6 +287,90 @@ const visualizar = () => {
 		navigator.clipboard.writeText(inputColor.value).then(() => console.log("Texto copiado")).catch((e) => console.log(e));
 	});
 }
-visualizar();
+// visualizar();
 
+const paises = () =>{
+	//Usando querySelector()
+	const listaDinamica = document.querySelector("#listaDinamica");
+	const arrayElement = ["Colombia", "Argentina", "Brazil"];
+	const fragment = new DocumentFragment();
 
+	//Usando createElement()
+	arrayElement.forEach((pais) =>{
+		const li = document.createElement("li");
+		li.className = "lista";
+
+		const bold = document.createElement("b");
+		bold.textContent = "País : ";
+
+		const span = document.createElement("span");
+		span.className = "text-primary";
+		span.textContent = pais;
+
+		//Usando appendChild()
+		li.appendChild(bold);
+		li.appendChild(span);
+		fragment.appendChild(li);
+	});
+	listaDinamica.appendChild(fragment);
+}
+// paises();
+
+const dinamico = () =>{
+	//Dandole uso al innerHTML
+	const arrayElement = ["Colombia", "Argentina", "Brazil"];
+
+	let template = "";
+
+	arrayElement.forEach((pais) =>{
+		template += `<li class="list">
+						<b>País: </b> <span class="text-primary">${pais}</span>
+					</li>`;
+	});
+	listaDinamica.innerHTML = template;
+}
+// dinamico();
+
+const carritoObject = () =>{
+	const carrito = document.querySelector("#carrito");
+	const template = document.querySelector("#template");
+	const fragment = document.createDocumentFragment();
+	const agregar = document.querySelectorAll(".card button");
+
+	const carritoObjecto = {};
+
+	const agregarCarrito = (e) =>{
+		// console.log(e.target.dataset);
+    	// console.log(e.target.dataset.fruta);
+
+    	const producto = {
+    		titulo: e.target.dataset.fruta,
+    		id: e.target.dataset.fruta,
+    		cantidad: 1
+    	};
+
+    	if (carritoObject.hasOwnProperty(producto.id)) {
+    		producto.cantidad = carritoObjecto[producto.id].cantidad + 1;
+    	}
+
+    	carritoObjecto[producto.id] = producto;
+
+    	pintarCarrito();
+	}
+
+	agregar.forEach((boton) => boton.addEventListener("click", agregarCarrito));
+
+	const pintarCarrito = () => {
+		carrito.textContent = "";
+
+		Object.values(carritoObjecto).forEach((item) => {
+			const clone = template.content.cloneNode(true);
+			clone.querySelector(".lead").textContent = item.titulo;
+			clone.querySelector(".rounded-pill").textContent = item.cantidad;
+			fragment.appendChild(clone);
+		});
+		carrito.appendChild(fragment);
+	}
+}
+
+carritoObject();
